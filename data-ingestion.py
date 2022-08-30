@@ -1,3 +1,4 @@
+from gettext import install
 import pandas as pd ## import pandas for general file types 
 import json ## imoprt json for json files
 import bs4 ## import bs4 for html files
@@ -13,12 +14,22 @@ import matplotlib
 import xlrd ## import xlrd for excel files, tab names 
 import PyPDF2 ## import PyPDF2 for pdf files
 
-
+## Section 1 
+## open excel file
 tab1 = pd.read_excel('python/data1.xls',sheet_name='Sheet1') ## read excel file
 tab2 = pd.read_excel('python/data1.xls',sheet_name='Sheet2') ## read excel file
 print (tab1,'\n',tab2) ## prints the data
 
+
+## Section 2
+## using request module for json api
 data = requests.get('https://data.cms.gov/data-api/v1/dataset/3817f5a4-bb28-416e-93b5-9cd794a76024/data')
 ## gets data from the API endpoint
 data = data.json() ## turns data into json
 print (data) ## prints the data
+
+## Section 3
+pip install --upgrade google-cloud-bigquery
+from google.cloud import bigquery
+
+client = bigquery.Client.from_service_account_json("data/ramon-507-2509a55a26d6.json") ## connects to GCP
